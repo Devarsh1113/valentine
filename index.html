@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Heta ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+  text-align: center;
+  color: white;
+}
+
+/* PAGE 1 CARD */
+.card {
+  margin-top: 120px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background: white;
+  color: #ff4b6e;
+  font-weight: bold;
+}
+
+/* PAGE 2 */
+.hidden {
+  display: none;
+}
+
+.container {
+  padding: 30px 20px;
+}
+
+.slideshow-container {
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* NO CROPPING */
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 15px 0;
+  color: #ff4b6e;
+}
+
+strong {
+  font-size: 19px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="card">
+  <h1>Heta, will you be my Valentine? 💘</h1>
+
+  <div class="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 😅</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="container hidden" id="secondPage">
+
+  <h1>Always You 💖</h1>
+
+  <div class="slideshow-container">
+    <img id="slideImage" src="heta.jpg">
+  </div>
+
+  <p>Happy Valentine’s Day, Heta 🌸</p>
+
+  <p>
+    Being in a long-distance relationship for years hasn’t been easy,
+    but every single day you’ve made it worth it.
+  </p>
+
+  <p>
+    Thank you for waiting, for believing in us,
+    and for standing by me no matter how far apart we are.
+  </p>
+
+  <p>
+    Everything I’m working towards is leading me back to you —
+    back home, back to us.
+  </p>
+
+  <p><strong>
+    Until the day I’m back in India and we finally get all that time together,
+    know that my heart has always been yours ❤️
+  </strong></p>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" src="ilikemebetter.mp3"></audio>
+
+<script>
+
+let yesScale = 1;
+let noIndex = 0;
+
+const noTexts = [
+  "No 😅",
+  "Nope 🙅‍♀️",
+  "Not yet 🤔",
+  "Still no 😬",
+  "You wish 😏",
+  "Almost… no 😳"
+];
+
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("click", () => {
+  noIndex = (noIndex + 1) % noTexts.length;
+  noBtn.innerText = noTexts[noIndex];
+
+  yesScale += 0.2;
+  yesBtn.style.transform = `scale(${yesScale})`;
+});
+
+yesBtn.addEventListener("click", () => {
+
+  document.getElementById("card").classList.add("hidden");
+  document.getElementById("secondPage").classList.remove("hidden");
+
+  startSlideshow();
+
+  const music = document.getElementById("bgMusic");
+  music.play(); // Auto plays because user clicked Yes
+});
+
+const images = [
+  "heta.jpg",
+  "IMG_2.JPG",
+  "IMG_5.JPG"
+];
+
+let currentIndex = 0;
+
+function startSlideshow() {
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("slideImage").src = images[currentIndex];
+  }, 3000);
+}
+
+</script>
+
+</body>
+</html>
